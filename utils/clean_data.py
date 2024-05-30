@@ -169,3 +169,6 @@ class DataCleaner:
     def remove_mentions(self, text: str) -> str:
         # Remove mentions from the 'text' column
         return re.sub(self.mention_pattern, '', text)
+    def remove_english_characters(self, text):
+        # Clean English characters from the 'text' column
+        return re.sub(r'[^\x00-\x7F]+', '', text)
