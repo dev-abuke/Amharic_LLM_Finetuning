@@ -160,3 +160,12 @@ class DataCleaner:
 
     def remove_symbols(self, text):
         return self.symbols.sub(' ', text)
+    
+    # Apply method to remove hyperlinks or URLs from the 'text' column
+    def remove_hyperlinks(self, text: str) -> str:
+        # Remove hyperlinks and mentions from the 'text' column
+        return re.sub(self.url_pattern, '', text)
+    
+    def remove_mentions(self, text: str) -> str:
+        # Remove mentions from the 'text' column
+        return re.sub(self.mention_pattern, '', text)
