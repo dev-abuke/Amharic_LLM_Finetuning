@@ -7,3 +7,4 @@ __pycache__/
 data/clean/cleaned_data.csv
 /venv
 /frontend/node_modules/
+/data
