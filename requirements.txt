@@ -9,4 +9,12 @@ python-dotenv
 transformers 
 datasets 
 tokenizers
-
+datasets 
+transformers[sentencepiece]
+git+https://github.com/huggingface/peft
+git+https://github.com/huggingface/accelerate
+accelerate
+datasets
+scikit-learn
+sentencepiece
+tokenizers
