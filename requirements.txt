@@ -1,0 +1,12 @@
+selenium
+webdriver_manager
+pandas
+sqlalchemy
+psycopg2
+langdetect
+fastapi
+python-dotenv
+transformers 
+datasets 
+tokenizers
+
