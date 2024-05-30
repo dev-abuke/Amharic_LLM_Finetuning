@@ -1,0 +1,9 @@
+.bak/**
+__pycache__/
+.env 
+nlp/**
+__pycache__/
+.env
+data/clean/cleaned_data.csv
+/venv
+/frontend/node_modules/
