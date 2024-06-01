@@ -3,7 +3,22 @@ import pandas as pd
 
 class DataCleaner:
     def __init__(self):
-        print("DataCleaner object created")
+        self.emoji_pattern = re.compile(r"[\U0001F000-\U0001F9FF\U0001FA00-\U0001FFFF\U00020000-\U0002FFFF\U00030000-\U0003FFFF]+", flags=re.UNICODE)
+        
+        self.symbols = re.compile("["
+                                  "\""
+                                  "\“"
+                                  "\""
+                                  "\'"
+                                  "\-"
+                                  "\*"
+                                  "\•"
+                                  "\ℹ"
+                                  "\﻿"
+                                  "\_"
+                                  "]+")
+        self.url_pattern = r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+'
+        self.mention_pattern = r'@(\w+)'
 
     def normalize_char_level_missmatch(self, input_token):
         """
@@ -136,3 +151,24 @@ class DataCleaner:
     
     def export_to_csv(self, df: pd.DataFrame, file_name: str):
         df.to_csv(file_name, index=False)
+    
+    def remove_hashtags(self, text: str) -> str:
+        # Remove only the hashtags from the 'text' column
+        return re.sub(r'#\w+', '', text)
+    def remove_emojis(self, text):
+        return self.emoji_pattern.sub(r'', text)
+
+    def remove_symbols(self, text):
+        return self.symbols.sub(' ', text)
+    
+    # Apply method to remove hyperlinks or URLs from the 'text' column
+    def remove_hyperlinks(self, text: str) -> str:
+        # Remove hyperlinks and mentions from the 'text' column
+        return re.sub(self.url_pattern, '', text)
+    
+    def remove_mentions(self, text: str) -> str:
+        # Remove mentions from the 'text' column
+        return re.sub(self.mention_pattern, '', text)
+    def remove_english_characters(self, text: str):
+        # Clean English characters from the 'text' column
+        return re.sub(r'[A-Za-z]+', '', text)
