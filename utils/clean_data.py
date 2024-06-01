@@ -153,10 +153,10 @@ class DataCleaner:
         df.to_csv(file_name, index=False)
     
     def remove_hashtags(self, text: str) -> str:
-        # Remove hashtags from the 'text' column
-        return text.replace(r'\#\w+', '', regex=True)
+        # Remove only the hashtags from the 'text' column
+        return re.sub(r'#\w+', '', text)
     def remove_emojis(self, text):
-        return self.emoji_pattern.sub('', text)
+        return self.emoji_pattern.sub(r'', text)
 
     def remove_symbols(self, text):
         return self.symbols.sub(' ', text)
@@ -169,6 +169,6 @@ class DataCleaner:
     def remove_mentions(self, text: str) -> str:
         # Remove mentions from the 'text' column
         return re.sub(self.mention_pattern, '', text)
-    def remove_english_characters(self, text):
+    def remove_english_characters(self, text: str):
         # Clean English characters from the 'text' column
-        return re.sub(r'[^\x00-\x7F]+', '', text)
+        return re.sub(r'[A-Za-z]+', '', text)
