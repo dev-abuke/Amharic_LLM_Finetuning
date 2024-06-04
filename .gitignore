@@ -7,7 +7,9 @@ __pycache__/
 data/clean/cleaned_data.csv
 /venv
 /frontend/node_modules/
-/data
+/data/**
 /finetuning/**
 /nlp/**
 **/finetuned**
+/tokenized_dataset/**
+/cache/**
