@@ -156,7 +156,7 @@ class DataCleaner:
         # Remove only the hashtags from the 'text' column
         return re.sub(r'#\w+', '', text)
     def remove_emojis(self, text):
-        return self.emoji_pattern.sub(r'', text)
+        return re.sub(self.emoji_pattern, '', text)
 
     def remove_symbols(self, text):
         return self.symbols.sub(' ', text)
